@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Amelias Flowers — Enchanted Garden</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Amelias Flowers — artificial flowers, custom portraits & wedding decorations. A magical enchanted garden experience." />
+
+  <style>
+    :root{
+      --bg:#f6fbf7;
+      --accent:#ff66b2;
+      --accent-2:#ffd166;
+      --glass: rgba(255,255,255,0.55);
+      --glass-2: rgba(255,255,255,0.18);
+      --muted:#636166;
+      --card-shadow: 0 8px 30px rgba(20,30,50,0.12);
+      --glow: 0 0 18px rgba(255,102,178,0.22);
+      --radius:16px;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; background: linear-gradient(180deg,#eafff1 0%, #fff7ff 100%); color:#222; -webkit-font-smoothing:antialiased;}
+
+    /* page layout */
+    .nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:80;width:94%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.10));backdrop-filter: blur(6px);box-shadow: 0 6px 20px rgba(10,20,30,0.06);border:1px solid rgba(255,255,255,0.6);}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:'Great Vibes';font-size:20px;box-shadow:var(--glow)}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:#222;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:10px;transition:all .25s}
+    .nav-links a:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.06);}
+
+    /* Hero */
+    .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:28px}
+    /* magical layered backgrounds */
+    .hero .bg-layer{position:absolute;inset:0;pointer-events:none}
+    .bg-sky{background: radial-gradient(circle at 10% 10%, rgba(255,230,245,0.25), transparent 10%), linear-gradient(180deg,#e7fff6 0%, #fffaf6 100%);mix-blend-mode:normal;opacity:1}
+    .bg-garden{background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0c6d6b5a2f9b3d40a7d09e3a6b7a9f02');background-size:cover;background-position:center;filter:blur(6px) saturate(120%);opacity:0.95;transform:scale(1.02)}
+    .bg-flowers{background-image:url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0b6a8b9cf0c8a8f0f5c7f6d4d3f1b2e1');background-size:cover;background-position:center;mix-blend-mode:screen;opacity:0.7}
+    .parallax{animation:parallax 40s linear infinite}
+    @keyframes parallax{0%{transform:translateY(0) scale(1.02)}50%{transform:translateY(-8%) scale(1.03)}100%{transform:translateY(0) scale(1.02)}}
+
+    /* hero content */
+    .hero-inner{position:relative;z-index:20;max-width:1200px;padding:40px 24px;display:flex;gap:32px;align-items:center;width:100%}
+    .hero-copy{flex:1;color:#07203a;text-shadow:0 2px 18px rgba(255,255,255,0.6)}
+    h1{font-family:'Great Vibes',cursive;font-size:64px;margin:0;line-height:1;color:#1a2730;text-shadow:0 10px 30px rgba(255,200,240,0.12)}
+    h2{margin:12px 0 20px;font-size:20px;opacity:0.95;color:#2a3b3f}
+
+    .float-slow{animation:floatUpDown 6s ease-in-out infinite}
+    .float-slower{animation:floatUpDown 8s ease-in-out infinite}
+    @keyframes floatUpDown{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+
+    .cta{display:inline-block;background:linear-gradient(90deg,var(--accent),#ff9ab8);padding:14px 22px;border-radius:999px;color:white;font-weight:700;text-decoration:none;box-shadow:0 10px 30px rgba(255,102,178,0.18),0 0 30px rgba(255,102,178,0.08);transform:translateZ(0);transition:transform .18s, box-shadow .18s}
+    .cta:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(255,102,178,0.28)}
+
+    /* hero right: feature image / mockup */
+    .hero-media{width:420px;max-width:38%;min-width:260px;background:linear-gradient(180deg,rgba(255,255,255,0.45),rgba(255,255,255,0.12));border-radius:20px;padding:12px;box-shadow:var(--card-shadow);border:1px solid rgba(255,255,255,0.6)}
+    .media-img{width:100%;height:320px;border-radius:14px;background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf0708d4?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2e2f3f9bc8f3d3d6a9b9f9f9d4a6b7c');background-size:cover;background-position:center;box-shadow:0 20px 50px rgba(30,30,50,0.12);transform-origin:center;animation:mediaFloat 8s ease-in-out infinite}
+    @keyframes mediaFloat{0%{transform:translateY(0) rotate(-0.6deg)}50%{transform:translateY(-10px) rotate(0.6deg)}100%{transform:translateY(0) rotate(-0.6deg)}}
+
+    /* petals, sparkles, fireflies - canvas/absolute SVG */
+    .effects{position:absolute;inset:0;z-index:15;pointer-events:none}
+    .petal{position:absolute;width:18px;height:18px;opacity:0.9;background:radial-gradient(circle at 30% 30%, #fff6ff, #ffd4e8 40%, #ff9ab8 100%);border-radius:50% 50% 40% 40%;transform-origin:center;animation:petalFall linear infinite}
+    @keyframes petalFall{0%{transform:translateY(-15vh) rotate(0) scale(0.8);opacity:0.95}100%{transform:translateY(120vh) rotate(420deg) scale(1);opacity:0.85}}
+
+    .sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:linear-gradient(180deg,#fff,#fffb);opacity:.9;filter:blur(.4px);box-shadow:0 0 10px rgba(255,255,200,0.9);animation:spark 4s linear infinite}
+    @keyframes spark{0%{transform:scale(.6);opacity:0.6}50%{transform:scale(1.6);opacity:1}100%{transform:scale(.6);opacity:0.6}}
+
+    .firefly{position:absolute;width:8px;height:8px;border-radius:50%;background: radial-gradient(circle, #fff7b0 0%, #fff0a0 45%, rgba(255,200,80,0.15) 60%);filter:blur(0.6px);opacity:0.9}
+
+    /* Sections */
+    section{padding:84px 18px;max-width:1200px;margin:0 auto}
+    .section-title{font-family:'Great Vibes';font-size:36px;margin:0 0 18px}
+
+    /* About */
+    .about{position:relative;border-radius:18px;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.12));backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.6);box-shadow:var(--card-shadow);overflow:hidden}
+
+    /* services */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service-card{border-radius:16px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.15));box-shadow:var(--card-shadow);transition:transform .28s, box-shadow .28s;border:1px solid rgba(255,255,255,0.6)}
+    .service-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(20,30,50,0.12)}
+    .service-img{width:100%;height:160px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 16px 40px rgba(20,30,50,0.08);transform-origin:center;animation:cardFloat 7s ease-in-out infinite}
+    @keyframes cardFloat{0%{transform:translateY(0) rotate(-0.5deg)}50%{transform:translateY(-8px) rotate(0.5deg)}100%{transform:translateY(0) rotate(-0.5deg)}}
+
+    /* Gallery grid */
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .gallery-item{border-radius:12px;height:160px;background-size:cover;background-position:center;overflow:hidden;transition:transform .28s, box-shadow .28s}
+    .gallery-item:hover{transform:scale(1.04);box-shadow:0 20px 60px rgba(20,30,50,0.12)}
+
+    /* Testimonials */
+    .testimonials{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .test-card{padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));box-shadow:var(--card-shadow);border:1px solid rgba(255,255,255,0.6);opacity:0;transform:translateY(12px);transition:all .6s}
+    .test-card.show{opacity:1;transform:translateY(0)}
+
+    /* Contact */
+    .contact-cards{display:flex;gap:12px;flex-wrap:wrap}
+    .contact-card{padding:14px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.6);box-shadow:var(--card-shadow)}
+
+    /* floating whatsapp */
+    .whatsapp{position:fixed;right:20px;bottom:22px;width:64px;height:64px;border-radius:999px;background:linear-gradient(180deg,#25D366,#12b34a);display:flex;align-items:center;justify-content:center;color:white;font-size:26px;z-index:120;box-shadow:0 20px 60px rgba(37,211,102,0.18);animation:whip 2.8s ease-in-out infinite}
+    @keyframes whip{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+    /* responsive */
+    @media (max-width:1000px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:repeat(3,1fr)}
+      .hero-inner{flex-direction:column-reverse;align-items:center}
+      .hero-media{max-width:86%;width:86%}
+      h1{font-size:52px}
+    }
+    @media (max-width:680px){
+      .nav{padding:8px 12px}
+      .nav-links{display:none}
+      .hero{min-height:84vh}
+      .hero-inner{padding:20px}
+      h1{font-size:44px}
+      .services-grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:repeat(2,1fr)}
+      .testimonials{grid-template-columns:1fr}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    a.btn-link{text-decoration:none}
+  </style>
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="brand">
+      <div class="logo">Am</div>
+      <div>
+        <div style="font-weight:700">Amelias Flowers</div>
+        <div style="font-size:12px;color:var(--muted)">Enchanted artificial florals & celebrations</div>
+      </div>
+    </div>
+
+    <div class="nav-links" role="navigation">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="bg-layer bg-sky parallax" style="z-index:1"></div>
+    <div class="bg-layer bg-garden parallax" style="z-index:2;opacity:0.85"></div>
+    <div class="bg-layer bg-flowers parallax" style="z-index:3;opacity:0.55;filter:saturate(115%)"></div>
+
+    <div class="effects" aria-hidden="true">
+      <!-- petals (generated by JS later) -->
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 class="float-slow">Welcome to the Enchanted Garden</h1>
+        <h2 class="float-slower">Amelias Flowers — Artificial flowers, Custom portraits & Wedding decorations</h2>
+        <p class="muted" style="max-width:60%">We craft lifelike artificial florals, hand-painted portrait backdrops, and magical wedding décor to make your events bloom with color and charm.</p>
+
+        <div style="margin-top:18px">
+          <a class="cta float-slow" href="#contact">Book a Consultation</a>
+        </div>
+
+        <div style="margin-top:26px;display:flex;gap:12px;align-items:center">
+          <div style="display:flex;gap:10px;align-items:center">
+            <div style="width:44px;height:44px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,0.04);display:flex;align-items:center;justify-content:center">🌸</div>
+            <div>
+              <div style="font-weight:700">Handcrafted</div>
+              <div class="muted" style="font-size:13px">Attention to detail</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="media-img" role="img" aria-label="Beautiful floral arrangement"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <h3 class="section-title">About</h3>
+      <div class="about">
+        <p style="font-size:18px;line-height:1.55">Amelias Flowers blends bright imagination with meticulous craft. We specialize in premium artificial flowers that look and feel real, bespoke portraits that capture the heart of any event, and wedding decorations designed to transform venues into enchanted gardens. Our mission is to create vibrant, lasting moments — whether for a cozy home, a portrait backdrop, or the wedding of your dreams.</p>
+      </div>
+    </section>
+
+    <section id="services">
+      <h3 class="section-title">Services</h3>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0c6d6b5a2f9b3d40a7d09e3a6b7a9f02')"></div>
+          <h4 style="margin:12px 0 6px;font-family:'Great Vibes';font-size:22px;color:#1a2730;text-shadow:var(--glow)">Artificial Flowers</h4>
+          <p class="muted">Lifelike stems, seasonal arrangements and long-lasting bouquets for home, office and events.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f2b3b9c8d1e5f6a2a3b4c5d6e7f8a9b')"></div>
+          <h4 style="margin:12px 0 6px;font-family:'Great Vibes';font-size:22px;color:#1a2730;text-shadow:var(--glow)">Custom Portraits</h4>
+          <p class="muted">Unique hand-painted and printed portrait backdrops — perfect for photoshoots and keepsakes.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1505576391880-4f76a6a4d7f1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c4f6e0f7d1b6f2a3c4b5e6d7a8b9c0d')"></div>
+          <h4 style="margin:12px 0 6px;font-family:'Great Vibes';font-size:22px;color:#1a2730;text-shadow:var(--glow)">Wedding Decorations</h4>
+          <p class="muted">Archways, table centerpieces, aisle runners and full venue transformations to match your story.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h3 class="section-title">Gallery</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1521302080824-8f1b3f1f6f4f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=123456789')"></div>
+        <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=987654321')"></div>
+        <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=0b6a8b9cf0c8a8f0f5c7f6d4d3f1b2e1')"></div>
+        <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcdef123456')"></div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <h3 class="section-title">Testimonials</h3>
+      <div class="testimonials">
+        <div class="test-card" data-delay="0">
+          <p style="font-size:15px;line-height:1.5">"Absolutely magical! The decorations made our wedding feel like a fairy tale. So many guests asked who did it."</p>
+          <div style="margin-top:12px;font-weight:700">— Sarah M.</div>
+        </div>
+        <div class="test-card" data-delay="400">
+          <p style="font-size:15px;line-height:1.5">"The artificial arrangements look more alive than real flowers. Beautiful quality and attention to detail."</p>
+          <div style="margin-top:12px;font-weight:700">— David K.</div>
+        </div>
+        <div class="test-card" data-delay="800">
+          <p style="font-size:15px;line-height:1.5">"Our portrait backdrop was a dream — vibrant colors and a perfect keepsake. Highly recommend."</p>
+          <div style="margin-top:12px;font-weight:700">— Amina R.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h3 class="section-title">Contact</h3>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div style="font-weight:700">Email</div>
+          <div class="muted">hello@ameliasflowers.com</div>
+        </div>
+        <div class="contact-card">
+          <div style="font-weight:700">Phone</div>
+          <div class="muted">+254 712 345678</div>
+        </div>
+        <div class="contact-card">
+          <div style="font-weight:700">Instagram</div>
+          <div class="muted">@amelias.flowers</div>
+        </div>
+        <div class="contact-card">
+          <div style="font-weight:700">Facebook</div>
+          <div class="muted">Amelias Flowers</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/254712345678" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+  <script>
+    /* Smooth scroll for internal links */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      })
+    })
+
+    /* generate falling petals and sparkles */
+    const effects = document.querySelector('.effects');
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+
+    // petals
+    for(let i=0;i<22;i++){
+      const p = document.createElement('div');
+      p.className='petal';
+      const left = rand(0,100);
+      const size = rand(12,26);
+      p.style.width = size+'px'; p.style.height=size+'px';
+      p.style.left = left+'%';
+      p.style.top = rand(-20,5)+'vh';
+      p.style.opacity = rand(0.7,1);
+      p.style.transform = `rotate(${rand(0,360)}deg)`;
+      p.style.animationDuration = rand(8,18)+'s';
+      p.style.animationDelay = rand(-8,8)+'s';
+      effects.appendChild(p);
+    }
+
+    // sparkles
+    for(let i=0;i<26;i++){
+      const s = document.createElement('div');
+      s.className='sparkle';
+      s.style.left = rand(2,96)+'%';
+      s.style.top = rand(2,84)+'%';
+      s.style.animationDuration = rand(2.6,6.5)+'s';
+      s.style.opacity = rand(0.6,1);
+      effects.appendChild(s);
+    }
+
+    // fireflies - random drifting movement
+    const fireflies=[];
+    for(let i=0;i<8;i++){
+      const f = document.createElement('div');
+      f.className='firefly';
+      f.style.left = rand(4,92)+'%';
+      f.style.top = rand(6,76)+'%';
+      f.style.opacity = rand(0.6,1);
+      effects.appendChild(f);
+      fireflies.push(f);
+    }
+    function floatFireflies(){
+      fireflies.forEach(f=>{
+        f.animate([
+          {transform:`translate(0,0)`},
+          {transform:`translate(${rand(-40,40)}px,${rand(-40,40)}px)`},
+          {transform:`translate(0,0)`}
+        ],{duration:rand(3000,7000),iterations:1,fill:'forwards'})
+      })
+      setTimeout(floatFireflies,2500)
+    }
+    floatFireflies();
+
+    // Testimonials auto fade-in loop
+    const cards = document.querySelectorAll('.test-card');
+    let tIndex=0;
+    function showTestimonials(){
+      cards.forEach((c,i)=>{c.classList.remove('show')});
+      cards[tIndex % cards.length].classList.add('show');
+      tIndex++;
+      setTimeout(showTestimonials,4200);
+    }
+    showTestimonials();
+
+    // make gallery items slightly sway using tiny animation
+    document.querySelectorAll('.gallery-item').forEach((g,i)=>{
+      g.animate([
+        {transform:'translateY(0) rotate(-0.2deg)'},
+        {transform:'translateY(-6px) rotate(0.2deg)'},
+        {transform:'translateY(0) rotate(-0.2deg)'}
+      ],{duration:7000 + i*300,iterations:Infinity,easing:'ease-in-out'})
+    })
+
+    // small accessibility: reduce motion respect
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(prefersReduced.matches){
+      document.querySelectorAll('*').forEach(el=>el.style.animationDuration='0s');
+    }
+
+    // nav hide on mobile - small toggler could be added; this layout hides links for narrow screens
+  </script>
+</body>
+</html>
